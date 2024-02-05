@@ -32,10 +32,15 @@
             divByZeroBtn = new Button();
             increaseMemoryBtn = new Button();
             increaseMemoryInMB_ValueTB = new RichTextBox();
-            label1 = new Label();
-            label2 = new Label();
-            button1 = new Button();
+            memoryToIncreaseLbl = new Label();
+            MB_Label = new Label();
+            increaseWorkingMemoryToBtn = new Button();
             workingMemoryValueToIncrease = new TextBox();
+            setProcessHandlesBtn = new Button();
+            exceedMaxArrayLengthBtn = new Button();
+            noRespondingBtn = new Button();
+            handlesCountTB = new TextBox();
+            closeMainWindowRemainProcess = new Button();
             SuspendLayout();
             // 
             // currentProcessInfoLb
@@ -77,31 +82,31 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(510, 101);
-            label1.Name = "label1";
-            label1.Size = new Size(200, 20);
-            label1.TabIndex = 4;
-            label1.Text = "value of memory to increase:";
+            memoryToIncreaseLbl.AutoSize = true;
+            memoryToIncreaseLbl.Location = new Point(510, 101);
+            memoryToIncreaseLbl.Name = "memoryToIncreaseLbl";
+            memoryToIncreaseLbl.Size = new Size(200, 20);
+            memoryToIncreaseLbl.TabIndex = 4;
+            memoryToIncreaseLbl.Text = "value of memory to increase:";
             // 
-            // label2
+            // MB_Label
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(663, 127);
-            label2.Name = "label2";
-            label2.Size = new Size(31, 20);
-            label2.TabIndex = 5;
-            label2.Text = "MB";
+            MB_Label.AutoSize = true;
+            MB_Label.Location = new Point(663, 127);
+            MB_Label.Name = "MB_Label";
+            MB_Label.Size = new Size(31, 20);
+            MB_Label.TabIndex = 5;
+            MB_Label.Text = "MB";
             // 
-            // button1
+            // increaseWorkingMemoryToBtn
             // 
-            button1.Location = new Point(323, 187);
-            button1.Name = "button1";
-            button1.Size = new Size(170, 50);
-            button1.TabIndex = 6;
-            button1.Text = "Increase working memory to:";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            increaseWorkingMemoryToBtn.Location = new Point(323, 187);
+            increaseWorkingMemoryToBtn.Name = "increaseWorkingMemoryToBtn";
+            increaseWorkingMemoryToBtn.Size = new Size(170, 50);
+            increaseWorkingMemoryToBtn.TabIndex = 6;
+            increaseWorkingMemoryToBtn.Text = "Increase working memory to:";
+            increaseWorkingMemoryToBtn.UseVisualStyleBackColor = true;
+            increaseWorkingMemoryToBtn.Click += increaseWorkingMemoryToBtn_Click;
             // 
             // workingMemoryValueToIncrease
             // 
@@ -110,15 +115,67 @@
             workingMemoryValueToIncrease.Size = new Size(125, 27);
             workingMemoryValueToIncrease.TabIndex = 7;
             // 
+            // setProcessHandlesBtn
+            // 
+            setProcessHandlesBtn.Location = new Point(323, 253);
+            setProcessHandlesBtn.Name = "setProcessHandlesBtn";
+            setProcessHandlesBtn.Size = new Size(170, 48);
+            setProcessHandlesBtn.TabIndex = 8;
+            setProcessHandlesBtn.Text = "Set process handles to:";
+            setProcessHandlesBtn.UseVisualStyleBackColor = true;
+            setProcessHandlesBtn.Click += button2_ClickAsync;
+            // 
+            // button3
+            // 
+            exceedMaxArrayLengthBtn.Location = new Point(323, 310);
+            exceedMaxArrayLengthBtn.Name = "button3";
+            exceedMaxArrayLengthBtn.Size = new Size(127, 61);
+            exceedMaxArrayLengthBtn.TabIndex = 9;
+            exceedMaxArrayLengthBtn.Text = "Exceed max array length";
+            exceedMaxArrayLengthBtn.UseVisualStyleBackColor = true;
+            exceedMaxArrayLengthBtn.Click += ExceedMaxArrayLengthBtn_Click;
+            // 
+            // noRespondingBtn
+            // 
+            noRespondingBtn.Location = new Point(492, 314);
+            noRespondingBtn.Name = "noRespondingBtn";
+            noRespondingBtn.Size = new Size(127, 53);
+            noRespondingBtn.TabIndex = 10;
+            noRespondingBtn.Text = "No responding test";
+            noRespondingBtn.UseVisualStyleBackColor = true;
+            noRespondingBtn.Click += noRespondingBtn_Click;
+            // 
+            // handlesCountTB
+            // 
+            handlesCountTB.Location = new Point(510, 264);
+            handlesCountTB.Name = "handlesCountTB";
+            handlesCountTB.Size = new Size(94, 27);
+            handlesCountTB.TabIndex = 11;
+            // 
+            // button2
+            // 
+            closeMainWindowRemainProcess.Location = new Point(635, 313);
+            closeMainWindowRemainProcess.Name = "button2";
+            closeMainWindowRemainProcess.Size = new Size(153, 55);
+            closeMainWindowRemainProcess.TabIndex = 12;
+            closeMainWindowRemainProcess.Text = "Close main window, remain process";
+            closeMainWindowRemainProcess.UseVisualStyleBackColor = true;
+            closeMainWindowRemainProcess.Click += closeMainWindowRemainProcess_Click;
+            // 
             // MainCrasthesterForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(closeMainWindowRemainProcess);
+            Controls.Add(handlesCountTB);
+            Controls.Add(noRespondingBtn);
+            Controls.Add(exceedMaxArrayLengthBtn);
+            Controls.Add(setProcessHandlesBtn);
             Controls.Add(workingMemoryValueToIncrease);
-            Controls.Add(button1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(increaseWorkingMemoryToBtn);
+            Controls.Add(MB_Label);
+            Controls.Add(memoryToIncreaseLbl);
             Controls.Add(increaseMemoryInMB_ValueTB);
             Controls.Add(increaseMemoryBtn);
             Controls.Add(divByZeroBtn);
@@ -135,9 +192,14 @@
         private Button divByZeroBtn;
         private Button increaseMemoryBtn;
         private RichTextBox increaseMemoryInMB_ValueTB;
-        private Label label1;
-        private Label label2;
-        private Button button1;
+        private Label memoryToIncreaseLbl;
+        private Label MB_Label;
+        private Button increaseWorkingMemoryToBtn;
         private TextBox workingMemoryValueToIncrease;
+        private Button setProcessHandlesBtn;
+        private Button exceedMaxArrayLengthBtn;
+        private Button noRespondingBtn;
+        private TextBox handlesCountTB;
+        private Button closeMainWindowRemainProcess;
     }
 }

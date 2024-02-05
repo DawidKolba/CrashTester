@@ -54,13 +54,37 @@ namespace CrashTester
                 MessageBox.Show("The value you entered is incorrect. Change it and try again.");
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void increaseWorkingMemoryToBtn_Click(object sender, EventArgs e)
         {
             if (int.TryParse(workingMemoryValueToIncrease.Text, out var memoryValue))
                 await CrashHelper.IncreaseWorkingMemory(memoryValue);
             else
                 MessageBox.Show("The value you entered is incorrect. Change it and try again.");
 
+        }
+
+        private void ExceedMaxArrayLengthBtn_Click(object sender, EventArgs e)
+        {
+            CrashHelper.ExceedMaxArray();
+        }
+
+        private async void button2_ClickAsync(object sender, EventArgs e)
+        {
+            if (int.TryParse(handlesCountTB.Text, out var handleCount))
+                await CrashHelper.SetProcessHandlesCountTo(handleCount);
+            else
+                MessageBox.Show("The value you entered is incorrect. Change it and try again.");
+        }
+
+        private void noRespondingBtn_Click(object sender, EventArgs e)
+        {
+            while (true) { }
+        }
+
+
+        private async void closeMainWindowRemainProcess_Click(object sender, EventArgs e)
+        {
+            CrashHelper.CloseWindowRemainProcess(MainCrasthesterForm.ActiveForm);
         }
     }
 }
